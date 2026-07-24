@@ -5,18 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Share Your Feedback</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>
+  /* ============================================================
+     🎨 CHANGE THE COLOR HERE
+     Just edit the 4 values in the ACTIVE palette below.
+     Or copy one of the ready-made palettes over the active one.
+
+     CORPORATE BLUE   --brand:#1e4d8c; --brand-dark:#123162; --brand-light:#5a86c4; --accent:#e0aa3e;
+     EMERALD GREEN    --brand:#1a7a55; --brand-dark:#0f5238; --brand-light:#5cbb92; --accent:#e0aa3e;
+     ROYAL PURPLE     --brand:#5b2a86; --brand-dark:#3d1a5e; --brand-light:#9b6cc4; --accent:#e0aa3e;
+     SLEEK CHARCOAL   --brand:#2d3436; --brand-dark:#1a1d1e; --brand-light:#636e72; --accent:#d9a441;
+     WARM SUNSET      --brand:#c0392b; --brand-dark:#8e2820; --brand-light:#e17055; --accent:#f1c40f;
+     ============================================================ */
   :root{
-    --brand:#8a1538;
-    --brand-dark:#6b0f2b;
-    --brand-light:#c85477;
+    /* ---- ACTIVE PALETTE (edit these) ---- */
+    --brand:#1e4d8c;
+    --brand-dark:#123162;
+    --brand-light:#5a86c4;
     --accent:#e0aa3e;
-    --text:#1c1c1e;
-    --muted:#6b7280;
-    --glass:rgba(255,255,255,.72);
-    --glass-border:rgba(255,255,255,.55);
+    /* ------------------------------------- */
+    --ink:#241419;
+    --muted:#8a7a80;
+    --line:#ece3e6;
+    --field-bg:#faf7f8;
     --ok:#0f7a56;
     --err:#c02626;
   }
@@ -25,152 +39,112 @@
   body{
     margin:0;
     font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    color:var(--text);
+    color:var(--ink);
     min-height:100vh;
     display:flex;align-items:center;justify-content:center;
-    padding:24px;
-    position:relative;
-    overflow-x:hidden;
-    background:linear-gradient(-45deg,#8a1538,#6b0f2b,#3a2d5c,#b03a5b);
-    background-size:400% 400%;
-    animation:gradientShift 16s ease infinite;
+    padding:28px;
+    background:
+      radial-gradient(900px 500px at 12% -10%, #f7e9ee 0%, transparent 55%),
+      radial-gradient(900px 500px at 100% 10%, #eef0f8 0%, transparent 50%),
+      linear-gradient(135deg,#f6f2f3 0%,#eef0f4 100%);
   }
-  @keyframes gradientShift{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;pointer-events:none}
-  .blob.b1{width:340px;height:340px;background:#e0aa3e;top:-80px;left:-60px;animation:float1 14s ease-in-out infinite}
-  .blob.b2{width:300px;height:300px;background:#c85477;bottom:-90px;right:-70px;animation:float2 18s ease-in-out infinite}
-  @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,50px)}}
-  @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-40px)}}
 
-  .card{
-    position:relative;z-index:1;
-    background:var(--glass);
-    backdrop-filter:blur(22px) saturate(160%);
-    -webkit-backdrop-filter:blur(22px) saturate(160%);
-    width:100%;max-width:580px;
+  .shell{
+    width:100%;max-width:940px;
+    display:grid;grid-template-columns:0.82fr 1fr;
+    background:#fff;
     border-radius:26px;
-    border:1px solid var(--glass-border);
-    box-shadow:0 30px 80px rgba(40,10,25,.45);
     overflow:hidden;
+    box-shadow:0 40px 90px rgba(60,20,35,.20);
     animation:rise .6s cubic-bezier(.2,.9,.2,1) both;
   }
-  @keyframes rise{from{opacity:0;transform:translateY(26px) scale(.98)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
 
-  .header{
+  .panel{
     position:relative;
-    padding:34px 34px 30px;
-    background:linear-gradient(135deg,rgba(138,21,56,.95),rgba(107,15,43,.95));
-    color:#fff;overflow:hidden;
+    padding:44px 40px;
+    color:#fff;
+    background:linear-gradient(150deg,var(--brand) 0%,var(--brand-dark) 100%);
+    overflow:hidden;
+    display:flex;flex-direction:column;
   }
-  .header::before{
+  .panel::before{
     content:"";position:absolute;inset:0;
-    background:radial-gradient(320px 160px at 100% 0%, rgba(224,170,62,.4), transparent 60%);
+    background:
+      radial-gradient(320px 200px at 100% 0%, rgba(217,164,65,.35), transparent 60%),
+      radial-gradient(280px 220px at -10% 100%, rgba(200,84,119,.5), transparent 60%);
   }
-  .badge{
-    position:relative;display:inline-flex;align-items:center;gap:6px;
-    font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
-    padding:5px 11px;border-radius:20px;margin-bottom:14px;
-  }
-  .header h1{position:relative;margin:0;font-size:27px;font-weight:800;letter-spacing:-.3px}
-  .header p{position:relative;margin:8px 0 0;font-size:14.5px;opacity:.92}
-  .share-btn{
-    position:absolute;top:26px;right:26px;z-index:2;
-    display:inline-flex;align-items:center;gap:7px;
-    background:rgba(255,255,255,.18);color:#fff;
-    border:1px solid rgba(255,255,255,.4);
-    padding:9px 14px;border-radius:22px;
-    font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
-    backdrop-filter:blur(4px);transition:.18s;
-  }
-  .share-btn:hover{background:rgba(255,255,255,.32);transform:translateY(-1px)}
-  .share-btn:active{transform:translateY(0)}
+  .panel .content{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
+  .logo{display:inline-flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.4px;font-size:15px;margin-bottom:auto}
+  .logo .dot{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center}
+  .logo .dot svg{width:16px;height:16px}
+  .panel h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:34px;line-height:1.12;margin:28px 0 14px;letter-spacing:-.4px}
+  .panel .lead{font-size:14.5px;line-height:1.6;opacity:.9;margin:0 0 26px;max-width:32ch}
+  .perks{list-style:none;padding:0;margin:0 0 8px;display:flex;flex-direction:column;gap:14px}
+  .perks li{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;line-height:1.5}
+  .perks .tick{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+  .perks .tick svg{width:14px;height:14px}
+  .perks strong{display:block;font-weight:700;margin-bottom:1px}
+  .perks span{opacity:.82;font-size:12.5px}
+  .panel .quote{margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);font-family:"Fraunces",serif;font-style:italic;font-size:15px;line-height:1.5;opacity:.92}
 
-  form{padding:26px 34px 34px}
+  .formside{position:relative;padding:40px 42px 34px;display:flex;flex-direction:column}
+  .share-btn{position:absolute;top:26px;right:30px;z-index:3;display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--brand-dark);border:1.5px solid var(--line);padding:9px 14px;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(90,13,37,.10);transition:.18s}
+  .share-btn:hover{border-color:var(--brand-light);color:var(--brand);transform:translateY(-1px);box-shadow:0 8px 20px rgba(90,13,37,.16)}
+  .formside .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+  .formside .title{font-family:"Fraunces",serif;font-weight:600;font-size:25px;margin:0 0 4px;letter-spacing:-.3px}
+  .formside .sub{font-size:13.5px;color:var(--muted);margin:0 0 22px}
 
-  .privacy{
-    display:flex;gap:14px;align-items:flex-start;
-    background:linear-gradient(135deg,rgba(138,21,56,.08),rgba(224,170,62,.10));
-    border:1px solid rgba(138,21,56,.18);
-    border-radius:16px;padding:15px 17px;margin-bottom:24px;
-    position:relative;overflow:hidden;
-  }
-  .privacy .ico{
-    flex:none;width:42px;height:42px;border-radius:12px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-dark));
-    color:#fff;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 6px 16px rgba(138,21,56,.35);
-  }
-  .privacy .ico svg{width:21px;height:21px}
-  .privacy .txt strong{display:block;font-size:14px;color:var(--brand-dark);margin-bottom:3px}
-  .privacy .txt span{font-size:12.5px;color:#6f5661;line-height:1.55}
+  .privacy{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,rgba(138,21,56,.055),rgba(217,164,65,.09));border:1px solid rgba(138,21,56,.16);border-radius:13px;padding:11px 14px;margin-bottom:22px}
+  .privacy .ico{flex:none;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 13px rgba(138,21,56,.32)}
+  .privacy .ico svg{width:17px;height:17px}
+  .privacy .txt strong{display:block;font-size:13px;color:var(--brand-dark);margin-bottom:1px}
+  .privacy .txt span{font-size:11.8px;color:#7a636b;line-height:1.45}
 
-  .row{display:flex;gap:15px}
+  .row{display:flex;gap:14px}
   .row .field{flex:1}
-  .field{position:relative;margin-bottom:20px}
-  .field input,.field textarea{
-    width:100%;padding:18px 15px 8px;
-    border:1.6px solid #e2d6db;border-radius:12px;
-    font-size:15px;font-family:inherit;background:rgba(255,255,255,.7);
-    transition:border-color .18s, box-shadow .18s, background .18s;
-  }
-  .field textarea{min-height:120px;resize:vertical;padding-top:24px}
-  .field label{
-    position:absolute;left:15px;top:15px;
-    font-size:15px;color:#9a8a90;pointer-events:none;
-    transition:.16s ease;background:transparent;padding:0 4px;
-  }
-  .field input:focus,.field textarea:focus{
-    outline:none;border-color:var(--brand);
-    box-shadow:0 0 0 4px rgba(138,21,56,.12);background:#fff;
-  }
-  .field input:focus + label,
-  .field input:not(:placeholder-shown) + label,
-  .field textarea:focus + label,
-  .field textarea:not(:placeholder-shown) + label{
-    top:-8px;left:11px;font-size:11.5px;font-weight:700;
-    color:var(--brand);background:#fff;border-radius:6px;
-  }
-  .counter{position:absolute;right:12px;bottom:10px;font-size:11px;color:#b0a4a9}
+  .field{position:relative;margin-bottom:16px}
+  .field .fico{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:#b9a7ad;pointer-events:none;transition:color .18s}
+  .field.area .fico{top:20px;transform:none}
+  .field input,.field textarea{width:100%;padding:13px 14px 13px 40px;border:1.6px solid var(--line);border-radius:12px;font-size:14.5px;font-family:inherit;background:var(--field-bg);color:var(--ink);transition:border-color .18s, box-shadow .18s, background .18s}
+  .field textarea{min-height:118px;resize:vertical}
+  .field input::placeholder,.field textarea::placeholder{color:#b3a4a9}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(138,21,56,.11);background:#fff}
+  .field input:focus ~ .fico,.field textarea:focus ~ .fico{color:var(--brand)}
+  .counter{position:absolute;right:12px;bottom:9px;font-size:10.5px;color:#c1b2b7}
 
-  button.submit{
-    position:relative;width:100%;padding:15px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-dark));
-    color:#fff;border:none;border-radius:13px;
-    font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;
-    letter-spacing:.2px;overflow:hidden;
-    box-shadow:0 12px 28px rgba(138,21,56,.4);
-    transition:transform .06s, filter .18s;
-  }
-  button.submit::after{
-    content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
-    transform:skewX(-20deg);transition:left .6s;
-  }
-  button.submit:hover::after{left:140%}
+  button.submit{position:relative;width:100%;padding:15px;margin-top:4px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;border:none;border-radius:13px;font-size:15.5px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.2px;overflow:hidden;box-shadow:0 14px 30px rgba(138,21,56,.34);transition:transform .06s, filter .18s}
+  button.submit::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-20deg);transition:left .6s}
+  button.submit:hover::after{left:150%}
   button.submit:hover{filter:brightness(1.06)}
   button.submit:active{transform:translateY(2px)}
   button.submit:disabled{opacity:.65;cursor:not-allowed}
 
-  .msg{display:none;margin-top:16px;padding:13px 15px;border-radius:12px;font-size:14px;text-align:center;font-weight:600}
-  .msg.ok{display:block;background:#e4f5ee;color:var(--ok);border:1px solid #b6e2ce}
+  .msg{display:none;margin-top:14px;padding:12px 14px;border-radius:11px;font-size:13.5px;text-align:center;font-weight:600}
   .msg.err{display:block;background:#fdecec;color:var(--err);border:1px solid #f3c2c2}
 
-  .foot{text-align:center;font-size:12px;color:#7d6b72;padding:0 32px 24px}
+  .foot{text-align:center;font-size:11.5px;color:#a2919a;padding:16px 0 2px;margin-top:auto}
   .foot .lock{color:var(--brand)}
 
   .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  .overlay{display:none;position:fixed;inset:0;background:rgba(28,10,18,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;z-index:50}
-  .overlay.open{display:flex;animation:fade .22s both}
+  .success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px;animation:fade .3s both}
+  .success.show{display:flex}
   @keyframes fade{from{opacity:0}to{opacity:1}}
+  .check{width:82px;height:82px;border-radius:50%;background:linear-gradient(135deg,#12946a,#0f7a56);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(15,122,86,.4);margin-bottom:20px;animation:pop .5s cubic-bezier(.2,1.3,.4,1) both}
+  @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+  .check svg{width:40px;height:40px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s .25s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .success h2{font-family:"Fraunces",serif;font-weight:600;font-size:24px;margin:0 0 8px}
+  .success p{font-size:14px;color:var(--muted);margin:0 0 22px;max-width:34ch;line-height:1.55}
+  .success .again{background:var(--field-bg);border:1.5px solid var(--line);color:var(--brand-dark);padding:11px 20px;border-radius:11px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;transition:.15s}
+  .success .again:hover{border-color:var(--brand-light);color:var(--brand)}
+
+  .overlay{display:none;position:fixed;inset:0;background:rgba(38,15,24,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;z-index:50}
+  .overlay.open{display:flex;animation:fade .22s both}
   .modal{background:#fff;border-radius:22px;max-width:350px;width:100%;padding:28px 26px 22px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise .3s cubic-bezier(.2,.9,.2,1) both}
-  .modal h3{margin:0 0 4px;font-size:19px;color:var(--brand-dark);font-weight:800}
+  .modal h3{font-family:"Fraunces",serif;margin:0 0 4px;font-size:20px;color:var(--brand-dark);font-weight:600}
   .modal p{margin:0 0 18px;font-size:13px;color:var(--muted)}
   #qrcode{display:flex;justify-content:center;padding:14px;background:linear-gradient(135deg,#faf2f5,#fff);border-radius:16px}
   #qrcode img,#qrcode canvas{border:8px solid #fff;border-radius:10px;box-shadow:0 6px 20px rgba(138,21,56,.18)}
@@ -181,67 +155,103 @@
   .btn-copy:hover{background:#e7d3db}
   .btn-close{background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff}
   .btn-close:hover{filter:brightness(1.07)}
+
+  @media (max-width:780px){
+    body{padding:0}
+    .shell{grid-template-columns:1fr;border-radius:0;min-height:100vh;box-shadow:none}
+    .panel{padding:34px 28px}
+    .panel h1{font-size:28px;margin-top:20px}
+    .perks{display:none}
+    .panel .quote{display:none}
+    .formside{padding:30px 26px 26px}
+    .share-btn{top:20px;right:22px}
+  }
 </style>
 </head>
 <body>
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
+  <div class="shell">
+    <aside class="panel">
+      <div class="content">
+        <div class="logo">
+          <span class="dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3L21 9.2l-4.5 4.4L17.8 20 12 16.8 6.2 20l1.3-6.4L3 9.2l6.1-.9z"/></svg>
+          </span>
+          Feedback Portal
+        </div>
+        <h1>Your voice shapes what I build next.</h1>
+        <p class="lead">Thank you for taking a moment to share your thoughts with us. Every response is read carefully.</p>
+        <ul class="perks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><strong>Completely confidential</strong><span>Seen only by our internal team.</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><strong>Takes under a minute</strong><span>Just five quick fields.</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><strong>Genuinely valued</strong><span>Your input drives real change.</span></div></li>
+        </ul>
+        <p class="quote">"Freedom of speech is louder than bomb and that's the pleasure of it beauty"</p>
+      </div>
+    </aside>
 
-  <div class="card">
-    <div class="header">
+    <section class="formside">
       <button class="share-btn" id="shareBtn" title="Share this form">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
         Share
       </button>
-      <span class="badge">✦ Your voice matters</span>
-      <h1>Share Your Feedback</h1>
-      <p>Tell us what you think — it only takes a minute.</p>
-    </div>
 
-    <form id="feedbackForm">
+      <div id="formWrap">
+        <div class="eyebrow">Feedback Form</div>
+        <h2 class="title">Tell us what you think</h2>
+        <p class="sub">Fields marked with * are required.</p>
 
-      <div class="privacy">
-        <div class="ico">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div class="privacy">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="txt">
+            <strong>Private &amp; confidential</strong>
+            <span>Your response is stored securely and never shared with third parties.</span>
+          </div>
         </div>
-        <div class="txt">
-          <strong>Your response is private &amp; confidential</strong>
-          <span>Feedback is stored securely and seen only by the team. We never share your details with third parties.</span>
-        </div>
+
+        <form id="feedbackForm">
+          <div class="row">
+            <div class="field">
+              <input type="text" id="firstName" name="firstName" placeholder="First name *" required />
+              <svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="field">
+              <input type="text" id="lastName" name="lastName" placeholder="Last name *" required />
+              <svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+
+          <div class="field">
+            <input type="text" id="position" name="position" placeholder="Position *" required />
+            <svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+
+          <div class="field">
+            <input type="text" id="company" name="company" placeholder="Company *" required />
+            <svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+          </div>
+
+          <div class="field area">
+            <textarea id="feedback" name="feedback" placeholder="Share your feedback... *" maxlength="1000" required></textarea>
+            <svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div class="counter" id="counter">0 / 1000</div>
+          </div>
+
+          <button type="submit" class="submit" id="submitBtn">Submit Feedback</button>
+          <div class="msg" id="msg"></div>
+        </form>
+
+        <div class="foot"><span class="lock">🔒</span> Your response is confidential and recorded securely.</div>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <input type="text" id="firstName" name="firstName" placeholder=" " required />
-          <label for="firstName">First Name *</label>
-        </div>
-        <div class="field">
-          <input type="text" id="lastName" name="lastName" placeholder=" " required />
-          <label for="lastName">Last Name *</label>
-        </div>
+      <div class="success" id="success">
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2>Thank you!</h2>
+        <p>Your feedback has been submitted privately. We truly appreciate you taking the time.</p>
+        <button class="again" id="againBtn">Submit another response</button>
       </div>
-
-      <div class="field">
-        <input type="text" id="position" name="position" placeholder=" " required />
-        <label for="position">Position *</label>
-      </div>
-
-      <div class="field">
-        <input type="text" id="company" name="company" placeholder=" " required />
-        <label for="company">Company *</label>
-      </div>
-
-      <div class="field">
-        <textarea id="feedback" name="feedback" placeholder=" " maxlength="1000" required></textarea>
-        <label for="feedback">Your Feedback *</label>
-        <div class="counter" id="counter">0 / 1000</div>
-      </div>
-
-      <button type="submit" class="submit" id="submitBtn">Submit Feedback</button>
-      <div class="msg" id="msg"></div>
-    </form>
-
-    <div class="foot"><span class="lock">🔒</span> Your response is confidential and recorded securely.</div>
+    </section>
   </div>
 
   <div class="overlay" id="overlay">
@@ -260,60 +270,55 @@
 <script>
   /* ====== CONFIG ====== */
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaLrY1BmGO_WyWc2aUX8iTxZR_cfntsZog8v9_8o6zlQLF8TTZxxrf60rosSGuDhW5/exec";
-
-  /* Your live GitHub Pages site — the QR code & Share button point here. */
-  const SHARE_URL = "https://kandokmaithong.github.io/Kan-s-Feedback/";
+  const SHARE_URL  = "https://kandokmaithong.github.io/Kan-s-Feedback/";
+  /* Tip: to match the QR color to your theme, change colorDark below. */
+  const QR_COLOR   = "#5e0d25";
   /* ==================== */
 
-  const form = document.getElementById("feedbackForm");
-  const btn  = document.getElementById("submitBtn");
-  const msg  = document.getElementById("msg");
-  const fb   = document.getElementById("feedback");
-  const counter = document.getElementById("counter");
+  const form=document.getElementById("feedbackForm"),
+        btn=document.getElementById("submitBtn"),
+        msg=document.getElementById("msg"),
+        fb=document.getElementById("feedback"),
+        counter=document.getElementById("counter"),
+        formWrap=document.getElementById("formWrap"),
+        success=document.getElementById("success");
 
-  fb.addEventListener("input", () => counter.textContent = fb.value.length + " / 1000");
+  fb.addEventListener("input",()=>counter.textContent=fb.value.length+" / 1000");
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e)=>{
     e.preventDefault();
-    if (SCRIPT_URL.includes("PASTE_YOUR")) {
-      showMsg("err", "⚠️ Setup needed: add your Google Apps Script URL in the code.");
-      return;
-    }
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span>Submitting...';
-    msg.className = "msg";
-
-    const data = {
-      firstName: form.firstName.value.trim(),
-      lastName:  form.lastName.value.trim(),
-      position:  form.position.value.trim(),
-      company:   form.company.value.trim(),
-      feedback:  form.feedback.value.trim()
+    btn.disabled=true;
+    btn.innerHTML='<span class="spinner"></span>Submitting...';
+    msg.className="msg";
+    const data={
+      firstName:form.firstName.value.trim(),
+      lastName:form.lastName.value.trim(),
+      position:form.position.value.trim(),
+      company:form.company.value.trim(),
+      feedback:form.feedback.value.trim()
     };
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST", mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(data)
-      });
-      showMsg("ok", "✅ Thank you! Your feedback has been submitted privately.");
+    try{
+      await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body:JSON.stringify(data)});
       form.reset();
-      counter.textContent = "0 / 1000";
-    } catch (err) {
-      showMsg("err", "❌ Something went wrong. Please try again.");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "Submit Feedback";
+      counter.textContent="0 / 1000";
+      formWrap.style.display="none";
+      success.classList.add("show");
+    }catch(err){
+      msg.className="msg err";
+      msg.textContent="❌ Something went wrong. Please try again.";
+    }finally{
+      btn.disabled=false;
+      btn.textContent="Submit Feedback";
     }
   });
 
-  function showMsg(type, text){
-    msg.className = "msg " + type;
-    msg.textContent = text;
-  }
+  document.getElementById("againBtn").addEventListener("click",()=>{
+    success.classList.remove("show");
+    formWrap.style.display="block";
+  });
 
-  /* ---- QR / Share ---- */
   const overlay=document.getElementById("overlay"),
         shareBtn=document.getElementById("shareBtn"),
         closeBtn=document.getElementById("closeBtn"),
@@ -322,17 +327,15 @@
         urlBox=document.getElementById("shareUrl");
   let qrRendered=false;
 
-  function getShareLink(){
-    return (SHARE_URL && SHARE_URL.trim()) ? SHARE_URL.trim() : window.location.href;
-  }
+  function getShareLink(){return (SHARE_URL&&SHARE_URL.trim())?SHARE_URL.trim():window.location.href;}
 
-  shareBtn.addEventListener("click", () => {
+  shareBtn.addEventListener("click",()=>{
     const link=getShareLink();
     urlBox.textContent=link;
     if(!qrRendered){
       qrBox.innerHTML="";
       if(typeof QRCode!=="undefined"){
-        new QRCode(qrBox,{text:link,width:200,height:200,colorDark:"#6b0f2b",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
+        new QRCode(qrBox,{text:link,width:200,height:200,colorDark:QR_COLOR,colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
       }else{
         const img=document.createElement("img");
         img.src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+encodeURIComponent(link);
