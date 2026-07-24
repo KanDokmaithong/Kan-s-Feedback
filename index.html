@@ -40,7 +40,6 @@
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
   }
-  /* floating blobs */
   .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;pointer-events:none}
   .blob.b1{width:340px;height:340px;background:#e0aa3e;top:-80px;left:-60px;animation:float1 14s ease-in-out infinite}
   .blob.b2{width:300px;height:300px;background:#c85477;bottom:-90px;right:-70px;animation:float2 18s ease-in-out infinite}
@@ -93,7 +92,6 @@
 
   form{padding:26px 34px 34px}
 
-  /* Privacy assurance box */
   .privacy{
     display:flex;gap:14px;align-items:flex-start;
     background:linear-gradient(135deg,rgba(138,21,56,.08),rgba(224,170,62,.10));
@@ -111,7 +109,6 @@
   .privacy .txt strong{display:block;font-size:14px;color:var(--brand-dark);margin-bottom:3px}
   .privacy .txt span{font-size:12.5px;color:#6f5661;line-height:1.55}
 
-  /* Floating label fields */
   .row{display:flex;gap:15px}
   .row .field{flex:1}
   .field{position:relative;margin-bottom:20px}
@@ -169,7 +166,6 @@
   .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* QR modal */
   .overlay{display:none;position:fixed;inset:0;background:rgba(28,10,18,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px;z-index:50}
   .overlay.open{display:flex;animation:fade .22s both}
   @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -248,7 +244,6 @@
     <div class="foot"><span class="lock">🔒</span> Your response is confidential and recorded securely.</div>
   </div>
 
-  <!-- QR share modal -->
   <div class="overlay" id="overlay">
     <div class="modal">
       <h3>Scan to open this form</h3>
@@ -266,8 +261,7 @@
   /* ====== CONFIG ====== */
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaLrY1BmGO_WyWc2aUX8iTxZR_cfntsZog8v9_8o6zlQLF8TTZxxrf60rosSGuDhW5/exec";
 
-  /* After you host on GitHub Pages, paste your public URL here so the QR points to it.
-     Example: "https://kandok.github.io/feedback/" */
+  /* Your live GitHub Pages site — the QR code & Share button point here. */
   const SHARE_URL = "https://kandokmaithong.github.io/Kan-s-Feedback/";
   /* ==================== */
 
